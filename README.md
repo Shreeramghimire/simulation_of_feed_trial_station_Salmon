@@ -15,4 +15,16 @@ The trial will start on 15.1.2026 and end on 15.03.2026.
 
 **Total number of rows = 10800**
 
-Parameters are: **water_temperature**,  **dissolved_oxygen**, **pH**, **salinity**, and **ammonia**.
+Parameters are: **water_temperature(celcius)**,  **oxygen_saturation_level(percentage)**, **pH**, **salinity(ppt)**, and **ammonia(mg/L)**.
+
+Baseline conditions: 
+
+**water_temperature** = 12.5 ± 0.5
+
+**oxygen_saturation_level** = 85 ± 3
+
+**pH** = 7.2 ± 0.1
+
+**salinity** = 32 ± 1
+
+**ammonia** = np.random.exponential(0.5) + 0.1
