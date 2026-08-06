@@ -15,4 +15,4 @@ The trial will start on 15.1.2026 and end on 15.03.2026.
 
 **Total number of rows = 10800**
 
-
+Parameters are: **water_temperature**,  **dissolved_oxygen**, **pH**, **salinity**, and **ammonia**.
