@@ -79,3 +79,7 @@ def generate_lab_data(tank_ids, measurement_days=[0, 30, 60]):
     
     return pd.DataFrame(records)
 
+lab_data = generate_lab_data(dim_tank['tank_id'].tolist())
+
+print(lab_data.head())
+
