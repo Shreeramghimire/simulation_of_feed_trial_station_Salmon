@@ -56,7 +56,7 @@ def generate_sensor_data(tank_ids, days=60, readings_per_day=6):
                         'parameter': param_name,
                         'value': round(value, 2),
                         'unit': unit,
-                        'data_source': 'sensor'  # Distinguish from manual lab data
+                        'data_source': 'sensor' 
                     })
                     
         return pd.DataFrame(records)
