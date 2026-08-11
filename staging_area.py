@@ -12,20 +12,20 @@ def stage_data_cleaning(raw_data):
     # Create a copy to avoid modifying original
     staged_data = raw_data.copy()
     
-    print(f"\n📊 Initial data shape: {staged_data.shape}")
-    print(f"📋 Initial columns: {staged_data.columns.tolist()}")
+    print(f"\n Initial data shape: {staged_data.shape}")
+    print(f" Initial columns: {staged_data.columns.tolist()}")
     
     # 1. Check for missing values
     print("\n🔍 Step 1: Checking for missing values...")
     missing_counts = staged_data.isnull().sum()
     if missing_counts.sum() > 0:
-        print(f"   ⚠️ Found {missing_counts.sum()} missing values:")
+        print(f"   Found {missing_counts.sum()} missing values:")
         print(missing_counts[missing_counts > 0])
         # Drop rows with missing critical fields
         staged_data = staged_data.dropna(subset=['tank_id', 'timestamp', 'parameter', 'value'])
-        print(f"   ✅ Dropped rows with missing critical fields. New shape: {staged_data.shape}")
+        print(f"    Dropped rows with missing critical fields. New shape: {staged_data.shape}")
     else:
-        print("   ✅ No missing values found!")
+        print("    No missing values found!")
     
     # 2. Validate data types
     print("\n🔍 Step 2: Validating data types...")
