@@ -11,7 +11,7 @@ def build_dimension_tables(staged_data, dim_tank):
     These are the descriptive tables that provide context to the facts.
     """
     
-    print("\n Building Dimension Tables...")
+    print("\n Build Dimension Tables: ")
     
     # 1. DIM_DATE (Time dimension)
     print("   • Create DIM_DATE: ")
@@ -41,13 +41,13 @@ def build_dimension_tables(staged_data, dim_tank):
     print(f"      Created {len(dim_date)} date records")
     
     # 2. DIM_TANK (Tank dimension from metadata)
-    print("   • Creating DIM_TANK...")
+    print("   • Create DIM_TANK: ")
     dim_tank_warehouse = dim_tank[['tank_id', 'treatment_group', 'fish_count', 'depth_m', 'oxygen_system']].copy()
     dim_tank_warehouse['tank_key'] = range(1, len(dim_tank_warehouse) + 1)
     print(f"      Created {len(dim_tank_warehouse)} tank records")
     
     # 3. DIM_FEED (Feed dimension from metadata)
-    print("   • Creating DIM_FEED...")
+    print("   • Create DIM_FEED:")
     dim_feed = dim_feed_batch[['feed_batch_id', 'feed_type', 'protein_pct', 'lipid_pct', 
                                'carbohydrate_pct', 'energy_mj_kg', 'supplier']].copy()
     dim_feed['feed_key'] = range(1, len(dim_feed) + 1)
