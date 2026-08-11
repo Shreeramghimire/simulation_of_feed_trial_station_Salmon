@@ -14,7 +14,7 @@ def build_dimension_tables(staged_data, dim_tank):
     print("\n Building Dimension Tables...")
     
     # 1. DIM_DATE (Time dimension)
-    print("   • Creating DIM_DATE...")
+    print("   • Create DIM_DATE: ")
     # Get all unique timestamps from the data
     all_dates = pd.date_range(
         start=staged_data['timestamp'].min().floor('D'),
@@ -38,20 +38,20 @@ def build_dimension_tables(staged_data, dim_tank):
     # Add trial week
     dim_date['trial_week'] = ((dim_date['trial_day'] - 1) // 7) + 1
     
-    print(f"      ✅ Created {len(dim_date)} date records")
+    print(f"      Created {len(dim_date)} date records")
     
     # 2. DIM_TANK (Tank dimension from metadata)
     print("   • Creating DIM_TANK...")
     dim_tank_warehouse = dim_tank[['tank_id', 'treatment_group', 'fish_count', 'depth_m', 'oxygen_system']].copy()
     dim_tank_warehouse['tank_key'] = range(1, len(dim_tank_warehouse) + 1)
-    print(f"      ✅ Created {len(dim_tank_warehouse)} tank records")
+    print(f"      Created {len(dim_tank_warehouse)} tank records")
     
     # 3. DIM_FEED (Feed dimension from metadata)
     print("   • Creating DIM_FEED...")
     dim_feed = dim_feed_batch[['feed_batch_id', 'feed_type', 'protein_pct', 'lipid_pct', 
                                'carbohydrate_pct', 'energy_mj_kg', 'supplier']].copy()
     dim_feed['feed_key'] = range(1, len(dim_feed) + 1)
-    print(f"      ✅ Created {len(dim_feed)} feed records")
+    print(f"      Created {len(dim_feed)} feed records")
     
     # 4. DIM_FISH (Fish dimension - if available)
     print("   • Creating DIM_FISH...")
@@ -59,17 +59,17 @@ def build_dimension_tables(staged_data, dim_tank):
         unique_fish = staged_data[['fish_id']].drop_duplicates().copy()
         unique_fish['fish_key'] = range(1, len(unique_fish) + 1)
         dim_fish = unique_fish
-        print(f"      ✅ Created {len(dim_fish)} fish records")
+        print(f"      Created {len(dim_fish)} fish records")
     else:
         dim_fish = None
-        print(f"      ℹ️ No fish_id data available - skipping DIM_FISH")
+        print(f"      No fish_id data available - skipping DIM_FISH")
     
     # 5. DIM_PARAMETER (Parameter dimension)
     print("   • Creating DIM_PARAMETER...")
     unique_params = staged_data[['parameter', 'unit']].drop_duplicates().copy()
     unique_params['parameter_key'] = range(1, len(unique_params) + 1)
     dim_parameter = unique_params
-    print(f"      ✅ Created {len(dim_parameter)} parameter records")
+    print(f"      Created {len(dim_parameter)} parameter records")
     
     return {
         'dim_date': dim_date,
@@ -83,7 +83,7 @@ def build_dimension_tables(staged_data, dim_tank):
 dimension_tables = build_dimension_tables(staged_data, dim_tank)
 
 # Display dimensions
-print("\n📊 Dimension Tables Summary:")
+print("\n Dimension Tables Summary:")
 for dim_name, dim_df in dimension_tables.items():
     if dim_df is not None:
         print(f"   • {dim_name}: {len(dim_df)} rows")
@@ -94,7 +94,7 @@ def build_fact_observations(staged_data, dimension_tables):
     This creates a wide table with all measures in one row per time-tank combination.
     """
     
-    print("\n📊 Building Fact Table...")
+    print("\n Building Fact Table...")
     
     # 1. Pivot the EAV data to wide format
     print("   • Pivoting EAV data to wide format...")
