@@ -1,5 +1,5 @@
 # ============================================
-# STEP 8: DATA MARTS - User-Specific Views
+# DATA MARTS - User-Specific Views
 # ============================================
 
 print("\n" + "="*60)
@@ -71,8 +71,8 @@ def create_research_mart(fact_observations, dimension_tables, staged_data):
     
     # Save research mart (as CSV for now, would be a database table in production)
     research_mart.to_csv('research_mart_detailed.csv', index=False)
-    print(f"   ✅ Research Mart: {len(research_mart):,} rows saved to 'research_mart_detailed.csv'")
-    print(f"   📋 Columns: {research_mart.columns.tolist()}")
+    print(f"    Research Mart: {len(research_mart):,} rows saved to 'research_mart_detailed.csv'")
+    print(f"    Columns: {research_mart.columns.tolist()}")
     
     return research_mart
 
@@ -110,8 +110,8 @@ def create_admin_mart(fact_observations, dimension_tables):
     
     # Save admin mart
     weekly_summary.to_csv('admin_mart_weekly_summary.csv', index=False)
-    print(f"   ✅ Admin Mart: {len(weekly_summary)} rows saved to 'admin_mart_weekly_summary.csv'")
-    print(f"   📋 Columns: {weekly_summary.columns.tolist()}")
+    print(f"    Admin Mart: {len(weekly_summary)} rows saved to 'admin_mart_weekly_summary.csv'")
+    print(f"    Columns: {weekly_summary.columns.tolist()}")
     
     return weekly_summary
 
@@ -121,7 +121,7 @@ research_mart = create_research_mart(fact_observations, dimension_tables, staged
 admin_mart = create_admin_mart(fact_observations, dimension_tables)
 
 print("\n" + "="*60)
-print("✅ ALL DATA MARTS CREATED SUCCESSFULLY!")
+print(" ALL DATA MARTS CREATED SUCCESSFULLY!")
 print("="*60)
 
 print("\n📊 Final Data Marts Summary:")
