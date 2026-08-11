@@ -1,6 +1,6 @@
 
 print("\n" + "="*60)
-print("🔄 STAGING AREA: Data Cleaning & Validation")
+print("STAGING AREA: Data Cleaning & Validation")
 print("="*60)
 
 def stage_data_cleaning(raw_data):
