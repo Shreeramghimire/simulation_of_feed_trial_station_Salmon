@@ -1,4 +1,3 @@
-
 print("\n" + "="*60)
 print("STAGING AREA: Data Cleaning & Validation")
 print("="*60)
@@ -99,7 +98,7 @@ def stage_data_cleaning(raw_data):
     print(f"    Parameter names standardized")
     
     # 6. Add audit columns
-    print("\n🔍 Step 6: Adding audit columns...")
+    print("\n Step 6: Adding audit columns...")
     staged_data['etl_processed_date'] = datetime.now()
     staged_data['etl_batch_id'] = f'BATCH_{datetime.now().strftime("%Y%m%d_%H%M%S")}'
     print(f"    Audit columns added")
