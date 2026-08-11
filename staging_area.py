@@ -112,6 +112,6 @@ def stage_data_cleaning(raw_data):
 # Run the staging process
 staged_data, invalid_records = stage_data_cleaning(raw_data_lake)
 
-print(f"\n✅ Staging complete! Ready for warehouse loading.")
+print(f"\n Staging complete! Ready for warehouse loading.")
 print(f"   • Valid records: {len(staged_data):,}")
 print(f"   • Invalid records: {len(invalid_records):,}")
