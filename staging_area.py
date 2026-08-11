@@ -46,10 +46,10 @@ def stage_data_cleaning(raw_data):
                                                if 'fish_id' in staged_data.columns 
                                                else ['tank_id', 'timestamp', 'parameter'])
     after = len(staged_data)
-    print(f"   ✅ Removed {before - after} duplicate records")
+    print(f"    Removed {before - after} duplicate records")
     
     # 4. Validate parameter values against expected ranges
-    print("\n🔍 Step 4: Validating parameter ranges...")
+    print("\n Step 4: Validating parameter ranges...")
     
     # Define expected ranges for each parameter
     param_ranges = {
@@ -80,32 +80,32 @@ def stage_data_cleaning(raw_data):
     
     # Log invalid records (would be sent to error handling in production)
     if len(invalid_records) > 0:
-        print(f"   ⚠️ Found {len(invalid_records)} out-of-range records:")
+        print(f"    Found {len(invalid_records)} out-of-range records:")
         print(invalid_records[['tank_id', 'parameter', 'value', 'quality_flag']].head())
         # In production, these would be logged to an error table
         invalid_records.to_csv('invalid_records.csv', index=False)
-        print(f"   ✅ Invalid records saved to 'invalid_records.csv' for review")
+        print(f"    Invalid records saved to 'invalid_records.csv' for review")
     else:
-        print(f"   ✅ All values within expected ranges!")
+        print(f"    All values within expected ranges!")
     
     # 5. Standardize parameter names
-    print("\n🔍 Step 5: Standardizing parameter names...")
+    print("\n Step 5: Standardizing parameter names...")
     # Add any parameter name standardization if needed
     parameter_mapping = {
         'water_temperature_c': 'water_temp_c',
         'dissolved_oxygen_pct': 'do_pct'
     }
     staged_data['parameter'] = staged_data['parameter'].replace(parameter_mapping)
-    print(f"   ✅ Parameter names standardized")
+    print(f"    Parameter names standardized")
     
     # 6. Add audit columns
     print("\n🔍 Step 6: Adding audit columns...")
     staged_data['etl_processed_date'] = datetime.now()
     staged_data['etl_batch_id'] = f'BATCH_{datetime.now().strftime("%Y%m%d_%H%M%S")}'
-    print(f"   ✅ Audit columns added")
+    print(f"    Audit columns added")
     
-    print(f"\n📊 Final staged data shape: {staged_data.shape}")
-    print(f"📋 Columns in staged data: {staged_data.columns.tolist()}")
+    print(f"\n Final staged data shape: {staged_data.shape}")
+    print(f" Columns in staged data: {staged_data.columns.tolist()}")
     
     return staged_data, invalid_records
 
