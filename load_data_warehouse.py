@@ -12,7 +12,7 @@ def load_warehouse(dimension_tables, fact_observations):
     In production, this would write to tables in Snowflake/Redshift/BigQuery.
     """
     
-    print("\n Loading dimension tables...")
+    print("\n Loading dimension tables: ")
     
     # Save each dimension table as CSV (simulating warehouse load)
     for dim_name, dim_df in dimension_tables.items():
@@ -21,7 +21,7 @@ def load_warehouse(dimension_tables, fact_observations):
             dim_df.to_csv(filename, index=False)
             print(f"    Loaded {dim_name}: {filename}")
     
-    print("\n Loading fact table...")
+    print("\n Loading fact table:")
     fact_observations.to_csv('warehouse_fact_observations.csv', index=False)
     print(f"    Loaded fact_observations: warehouse_fact_observations.csv")
     
