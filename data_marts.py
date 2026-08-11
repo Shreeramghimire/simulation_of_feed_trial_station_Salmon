@@ -124,7 +124,7 @@ print("\n" + "="*60)
 print(" ALL DATA MARTS CREATED SUCCESSFULLY!")
 print("="*60)
 
-print("\n📊 Final Data Marts Summary:")
+print("\n Final Data Marts Summary:")
 print(f"   • Operations Mart: {len(ops_mart):,} rows → For Farm Manager")
 print(f"   • Research Mart: {len(research_mart):,} rows → For Scientists")
 print(f"   • Admin Mart: {len(admin_mart)} rows → For Station Manager")
