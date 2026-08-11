@@ -1,6 +1,5 @@
 # DATA WAREHOUSE - Star Schema Creation
 
-
 print("\n" + "="*60)
 print(" DATA WAREHOUSE: Building Star Schema")
 print("="*60)
@@ -65,7 +64,7 @@ def build_dimension_tables(staged_data, dim_tank):
         print(f"      No fish_id data available - skipping DIM_FISH")
     
     # 5. DIM_PARAMETER (Parameter dimension)
-    print("   • Creating DIM_PARAMETER...")
+    print("   • Create DIM_PARAMETER:")
     unique_params = staged_data[['parameter', 'unit']].drop_duplicates().copy()
     unique_params['parameter_key'] = range(1, len(unique_params) + 1)
     dim_parameter = unique_params
@@ -97,7 +96,7 @@ def build_fact_observations(staged_data, dimension_tables):
     print("\n Building Fact Table...")
     
     # 1. Pivot the EAV data to wide format
-    print("   • Pivoting EAV data to wide format...")
+    print("   • Pivoting EAV data to wide format:")
     
     # Create pivot - handle both sensor and lab data
     if 'fish_id' in staged_data.columns:
@@ -119,10 +118,10 @@ def build_fact_observations(staged_data, dimension_tables):
     
     # Clean up column names
     pivot_data.columns = [str(col).strip() for col in pivot_data.columns]
-    print(f"      ✅ Pivoted to {pivot_data.shape[0]} rows × {pivot_data.shape[1]} columns")
+    print(f"       Pivoted to {pivot_data.shape[0]} rows × {pivot_data.shape[1]} columns")
     
     # 2. Add dimension keys
-    print("   • Adding dimension keys...")
+    print("   • Add dimension keys:")
     
     # Add date key
     pivot_data['date'] = pd.to_datetime(pivot_data['timestamp']).dt.floor('D')
@@ -143,7 +142,7 @@ def build_fact_observations(staged_data, dimension_tables):
     pivot_data[numeric_cols] = pivot_data[numeric_cols].round(4)
     
     # 4. Rename columns to standard names
-    print("   • Standardizing column names...")
+    print("   • Standarde column names: ")
     # Keep column names as they are (they're already descriptive)
     
     # 5. Select final columns for fact table
@@ -156,7 +155,7 @@ def build_fact_observations(staged_data, dimension_tables):
     # Add a unique fact key
     fact_observations['fact_key'] = range(1, len(fact_observations) + 1)
     
-    print(f"   ✅ Final Fact Table: {fact_observations.shape[0]} rows × {fact_observations.shape[1]} columns")
+    print(f"   Final Fact Table: {fact_observations.shape[0]} rows × {fact_observations.shape[1]} columns")
     
     return fact_observations
 
