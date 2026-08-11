@@ -3,7 +3,7 @@
 # ============================================
 
 print("\n" + "="*60)
-print("📊 CREATING DATA MARTS")
+print(" CREATING DATA MARTS")
 print("="*60)
 
 # Mart 1: Operations Dashboard (for Farm Manager)
@@ -11,7 +11,7 @@ def create_ops_mart(fact_observations, dimension_tables):
     """
     Create an operations data mart focused on daily tank performance.
     """
-    print("\n📊 Creating Operations Mart...")
+    print("\n Creating Operations Mart...")
     
     # Merge with dimensions
     ops_mart = fact_observations.merge(
@@ -38,8 +38,8 @@ def create_ops_mart(fact_observations, dimension_tables):
     
     # Save ops mart
     ops_mart.to_csv('ops_mart_daily_performance.csv', index=False)
-    print(f"   ✅ Operations Mart: {len(ops_mart)} rows saved to 'ops_mart_daily_performance.csv'")
-    print(f"   📋 Columns: {ops_mart.columns.tolist()}")
+    print(f"    Operations Mart: {len(ops_mart)} rows saved to 'ops_mart_daily_performance.csv'")
+    print(f"    Columns: {ops_mart.columns.tolist()}")
     
     return ops_mart
 
@@ -48,7 +48,7 @@ def create_research_mart(fact_observations, dimension_tables, staged_data):
     """
     Create a research mart with detailed, flexible data for scientists.
     """
-    print("\n📊 Creating Research Mart...")
+    print("\n Creating Research Mart...")
     
     # Research mart uses detailed data - keep the EAV format for flexibility
     # Include both sensor and lab data with all details
@@ -81,7 +81,7 @@ def create_admin_mart(fact_observations, dimension_tables):
     """
     Create an administrative mart with summary metrics for management.
     """
-    print("\n📊 Creating Admin Mart...")
+    print("\n Creating Admin Mart...")
     
     # Aggregate to weekly level for high-level summary
     admin_mart = fact_observations.merge(
