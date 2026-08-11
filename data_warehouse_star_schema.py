@@ -162,5 +162,5 @@ def build_fact_observations(staged_data, dimension_tables):
 # Build the fact table
 fact_observations = build_fact_observations(staged_data, dimension_tables)
 
-print("\n📊 Fact Table Preview:")
+print("\n Fact Table Preview:")
 print(fact_observations.head())
