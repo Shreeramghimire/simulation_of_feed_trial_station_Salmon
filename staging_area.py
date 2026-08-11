@@ -16,7 +16,7 @@ def stage_data_cleaning(raw_data):
     print(f" Initial columns: {staged_data.columns.tolist()}")
     
     # 1. Check for missing values
-    print("\n🔍 Step 1: Checking for missing values...")
+    print("\n Step 1: Checking for missing values...")
     missing_counts = staged_data.isnull().sum()
     if missing_counts.sum() > 0:
         print(f"   Found {missing_counts.sum()} missing values:")
@@ -28,7 +28,7 @@ def stage_data_cleaning(raw_data):
         print("    No missing values found!")
     
     # 2. Validate data types
-    print("\n🔍 Step 2: Validating data types...")
+    print("\n Step 2: Validate data types: ")
     staged_data['timestamp'] = pd.to_datetime(staged_data['timestamp'])
     staged_data['value'] = pd.to_numeric(staged_data['value'], errors='coerce')
     # Drop rows where value couldn't be converted to numeric
@@ -36,11 +36,11 @@ def stage_data_cleaning(raw_data):
     staged_data = staged_data.dropna(subset=['value'])
     after = len(staged_data)
     if before - after > 0:
-        print(f"   ⚠️ Dropped {before - after} rows with invalid numeric values")
-    print(f"   ✅ Data types validated")
+        print(f"    Dropped {before - after} rows with invalid numeric values")
+    print(f"    Data types validated")
     
     # 3. Remove duplicates
-    print("\n🔍 Step 3: Removing duplicates...")
+    print("\n Step 3: Removing duplicates...")
     before = len(staged_data)
     staged_data = staged_data.drop_duplicates(subset=['tank_id', 'timestamp', 'parameter', 'fish_id'] 
                                                if 'fish_id' in staged_data.columns 
