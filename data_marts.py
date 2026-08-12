@@ -43,7 +43,7 @@ def create_ops_mart(fact_observations, dimension_tables):
     
     return ops_mart
 
-# Mart 2: Research Mart (for Scientists)
+# Mart 2: Research Mart (for scientists)
 def create_research_mart(fact_observations, dimension_tables, staged_data):
     """
     Create a research mart with detailed, flexible data for scientists.
